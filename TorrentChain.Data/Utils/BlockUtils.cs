@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using TorrentChain.Data.Models;
 
-namespace TorrentChain.Core.Utils
+namespace TorrentChain.Data.Utils
 {
     public static class BlockUtils
     {

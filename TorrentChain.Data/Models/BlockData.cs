@@ -11,20 +11,10 @@ namespace TorrentChain.Data.Models
     {
         public BlockData(IEnumerable<byte> data)
         {
-            try
-            {
-                var parser = new BencodeParser();
-                var torrent = parser.Parse<Torrent>(data.ToArray());
-
-                _data = data;
-            }
-            catch(Exception e)
-            {
-                throw e;
-            }
+            _data = data.ToArray();
         }
 
-        private IEnumerable<byte> _data { get; set; }
+        private byte[] _data { get; set; }
 
         public IEnumerable<byte> Data => _data;
 
@@ -34,18 +24,32 @@ namespace TorrentChain.Data.Models
 
         private string GetTorrentAuthor()
         {
-            var parser = new BencodeParser();
-            var torrent = parser.Parse<Torrent>(_data.ToArray());
+            try
+            {
+                var parser = new BencodeParser();
+                var torrent = parser.Parse<Torrent>(_data);
 
-            return torrent.CreatedBy;
+                return torrent.CreatedBy;
+            }
+            catch
+            {
+                return "Error getting Author from data";
+            }
         }
 
         private string GetTorrentTitle()
         {
-            var parser = new BencodeParser();
-            var torrent = parser.Parse<Torrent>(_data.ToArray());
+            try
+            {
+                var parser = new BencodeParser();
+                var torrent = parser.Parse<Torrent>(_data);
 
-            return torrent.DisplayName;
+                return torrent.DisplayName;
+            }
+            catch
+            {
+                return "Error getting title from data";
+            }
         }
 
         // May need to modify this further later

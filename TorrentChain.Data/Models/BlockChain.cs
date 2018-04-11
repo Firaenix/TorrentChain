@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using TorrentChain.Data.Exceptions;
+using TorrentChain.Data.Utils;
 
 namespace TorrentChain.Data.Models
 {
@@ -53,6 +54,8 @@ namespace TorrentChain.Data.Models
                 return false;
 
             // Make sure the data only contains a valid torrent file
+            if (!BlockUtils.IsDataValidTorrent(newBlock.BlockData))
+                return false;
 
             return true;
         }

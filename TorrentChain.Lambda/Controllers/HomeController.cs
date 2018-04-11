@@ -8,8 +8,9 @@ using System.IO;
 using BencodeNET.Parsing;
 using BencodeNET.Torrents;
 
-namespace TorrentChain.Controllers
+namespace TorrentChain.Lambda.Controllers
 {
+    [Route("/")]
     public class HomeController : Controller
     {
         private readonly IChainService _chainService;
