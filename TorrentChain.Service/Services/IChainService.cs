@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TorrentChain.Core.Models;
+using TorrentChain.Data.Models;
 
 namespace TorrentChain.Core.Services
 {
@@ -9,6 +9,6 @@ namespace TorrentChain.Core.Services
     {
         IReadOnlyList<Block> GetBlockChain();
 
-        void AddBlockToChain(Block newBlock);
+        void AddBlockToChain(BlockData newBlock);
     }
 }

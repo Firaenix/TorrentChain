@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TorrentChain.Core.Exceptions
+namespace TorrentChain.Data.Exceptions
 {
     public class AppendBlockException : Exception
     {

@@ -21,7 +21,7 @@
                         <strong>Previous Hash:</strong> <span>@Convert.ToBase64String(item.PreviousHash.ToArray())</span>
                     </div>
                     <div>
-                        <strong>Data:</strong> <span>@System.Text.Encoding.Default.GetString(item.Data.ToArray())</span>
+                        <strong>Data:</strong> <span>@System.Text.Encoding.Default.GetString(item.BlockData.Data.ToArray())</span>
                     </div>
                     <div>
                         <strong>TimeStamp:</strong> <span>@item.TimeStamp.ToLocalTime()</span>

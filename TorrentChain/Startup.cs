@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TorrentChain.Core.Models;
+using TorrentChain.Data.Models;
 using TorrentChain.Core.Services;
-using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace TorrentChain
 {
@@ -26,7 +22,8 @@ namespace TorrentChain
         {
             services.AddMvc();
 
-            services.AddSingleton<LinkedList<Block>>();
+            services.AddTransient<LinkedList<Block>>();
+            services.AddSingleton<BlockChain>();
             services.AddTransient<IChainService, ChainService>();
             services.AddLogging();
         }

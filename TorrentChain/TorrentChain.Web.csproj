@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Files\edubuntu-12.04.5-dvd-amd64.iso.torrent" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Files\edubuntu-12.04.5-dvd-amd64.iso.torrent">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
   </ItemGroup>
 
@@ -13,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TorrentChain.Core\TorrentChain.Core.csproj" />
+    <ProjectReference Include="..\TorrentChain.Data\TorrentChain.Data.csproj" />
+    <ProjectReference Include="..\TorrentChain.Service\TorrentChain.Service.csproj" />
   </ItemGroup>
 
 </Project>

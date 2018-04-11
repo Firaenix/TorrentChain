@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using TorrentChain.Core.Exceptions;
+using TorrentChain.Data.Exceptions;
 
-namespace TorrentChain.Core.Models
+namespace TorrentChain.Data.Models
 {
     public class BlockChain
     {
         private readonly LinkedList<Block> _chain;
         private readonly ILogger<BlockChain> _logger;
 
-        public BlockChain(ILogger<BlockChain> logger)
+        public BlockChain(LinkedList<Block> chain, ILogger<BlockChain> logger)
         {
+            _chain = chain;
             _logger = logger;
-
+            
             #if DEBUG
                 AddGenesisBlock();
             #endif
@@ -27,8 +28,10 @@ namespace TorrentChain.Core.Models
             return _chain.ToList();
         }
 
-        public void AddBlock(Block newBlock)
+        public void AddBlock(BlockData newBlockData)
         {
+            var newBlock = GenerateNextBlock(newBlockData);
+
             if (!IsValidNewBlock(_chain.Last.Value, newBlock))
             {
                 throw new AppendBlockException("Attempted to add invalid block to chain!");
@@ -36,23 +39,7 @@ namespace TorrentChain.Core.Models
 
             _chain.AddLast(newBlock);
         }
-
-        private Block GenerateNextBlock(IEnumerable<byte> newData)
-        {
-            var previousBlock = _chain.Last.Value;
-
-            var nextIndex = previousBlock.Index + 1;
-            var nextTimestamp = DateTime.Now;
-            var nextHash = CalculateHash(previousBlock.Hash, nextIndex, nextTimestamp, newData);
-
-            return new Block(nextIndex, previousBlock.Hash, nextTimestamp, nextHash, newData);
-        }
-
-        private IEnumerable<byte> CalculateBlockHash(Block block)
-        {
-            return CalculateHash(block.PreviousHash, block.Index, block.TimeStamp, block.Data);
-        }
-
+        
         public bool IsValidNewBlock(Block previousBlock, Block newBlock)
         {
             if (previousBlock.Index + 1 != newBlock.Index)
@@ -69,7 +56,23 @@ namespace TorrentChain.Core.Models
 
             return true;
         }
-       
+
+        private Block GenerateNextBlock(BlockData newData)
+        {
+            var previousBlock = _chain.Last.Value;
+
+            var nextIndex = previousBlock.Index + 1;
+            var nextTimestamp = DateTime.Now;
+            var nextHash = CalculateHash(previousBlock.Hash, nextIndex, nextTimestamp, newData.GetBytes());
+
+            return new Block(nextIndex, previousBlock.Hash, nextTimestamp, nextHash, newData);
+        }
+
+        private IEnumerable<byte> CalculateBlockHash(Block block)
+        {
+            return CalculateHash(block.PreviousHash, block.Index, block.TimeStamp, block.BlockData.GetBytes());
+        }
+
         private IEnumerable<byte> CalculateHash(IEnumerable<byte> previousBlockHash, long nextIndex, DateTime nextTimestamp, IEnumerable<byte> blockData)
         {
             var dataToHash = previousBlockHash.Concat(BitConverter.GetBytes(nextIndex))
@@ -90,12 +93,12 @@ namespace TorrentChain.Core.Models
 
             _logger.LogInformation("Adding genesis block");
 
-            var genesisData = Encoding.ASCII.GetBytes("This is the genesis block!!");
+            var genesisData = new BlockData(Encoding.ASCII.GetBytes("This is the genesis block!!"));
             var sha512 = SHA512.Create();
-            var genesishash = sha512.ComputeHash(genesisData);
+            var genesishash = sha512.ComputeHash(genesisData.GetBytes().ToArray());
             var genesisBlock = new Block(0, new byte[0], DateTime.Now, genesishash, genesisData);
 
-            _chain.AddBlock(genesisBlock);
+            _chain.AddLast(genesisBlock);
         }
     }
 }

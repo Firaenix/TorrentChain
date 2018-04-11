@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using TorrentChain.Core.Models;
+using TorrentChain.Data.Models;
 
 namespace TorrentChain.Core.Services
 {
@@ -24,11 +21,11 @@ namespace TorrentChain.Core.Services
             return _blockChain.GetChain();
         }
         
-        public void AddBlockToChain(Block newBlock)
+        public void AddBlockToChain(BlockData newBlockData)
         {
             try
             {
-                _blockChain.AddBlock(newBlock);
+                _blockChain.AddBlock(newBlockData);
             }
             catch (Exception e)
             {

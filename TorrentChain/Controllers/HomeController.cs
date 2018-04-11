@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TorrentChain.Models;
 using TorrentChain.Core.Services;
 using Microsoft.Extensions.Logging;
 using TorrentChain.Web.Models;
 using System.Text;
+using System.IO;
 
 namespace TorrentChain.Controllers
 {
@@ -25,7 +21,7 @@ namespace TorrentChain.Controllers
 
         public IActionResult Index() => View(new HomeViewModel()
         {
-            BlockChain = _chainService.GetBlockChain().ToList()
+            BlockChain = _chainService.GetBlockChain()
         });
 
         [HttpGet]
@@ -34,8 +30,10 @@ namespace TorrentChain.Controllers
         {
             try
             {
-                var block = _chainService.GenerateNextBlock(Encoding.ASCII.GetBytes($"This block was created at: {DateTime.Now.ToLongTimeString()}"));
-                _chainService.AddBlockToChain(block);
+                // Read Torrent file from disk
+                var file = System.IO.File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Files/edubuntu-12.04.5-dvd-amd64.iso.torrent"));
+
+                _chainService.AddBlockToChain(new Data.Models.BlockData(Encoding.ASCII.GetBytes(file)));
 
                 return Redirect("/");
             }

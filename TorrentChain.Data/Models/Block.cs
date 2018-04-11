@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TorrentChain.Core.Models
+namespace TorrentChain.Data.Models
 {
     public class Block
     {
@@ -12,10 +12,10 @@ namespace TorrentChain.Core.Models
             this.PreviousHash = previousHash;
             this.TimeStamp = timestamp;
             this._hash = hash;
-            this.Data = data;
+            this.BlockData = data;
         }
 
-        public BlockData Data { get; set; }
+        public BlockData BlockData { get; set; }
 
         public long Index { get; set; }
         
