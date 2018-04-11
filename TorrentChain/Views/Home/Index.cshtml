@@ -1,0 +1,33 @@
+﻿@model TorrentChain.Web.Models.HomeViewModel;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <form action="/api/chain/add">
+        <button>Add Block!</button>
+
+        <ul>
+            @foreach (var item in Model.BlockChain)
+            {
+                <li>
+                    <div>
+                        <strong>Index:</strong> <span>@item.Index</span>
+                    </div>
+                    <div>
+                        <strong>Hash:</strong> <span>@Convert.ToBase64String(item.Hash.ToArray())</span>
+                    </div>
+                    <div>
+                        <strong>Previous Hash:</strong> <span>@Convert.ToBase64String(item.PreviousHash.ToArray())</span>
+                    </div>
+                    <div>
+                        <strong>Data:</strong> <span>@System.Text.Encoding.Default.GetString(item.Data.ToArray())</span>
+                    </div>
+                    <div>
+                        <strong>TimeStamp:</strong> <span>@item.TimeStamp.ToLocalTime()</span>
+                    </div>
+                </li>
+            }
+        </ul>
+    </form>
+</div>
