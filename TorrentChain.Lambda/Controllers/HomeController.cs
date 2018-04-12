@@ -7,6 +7,10 @@ using System.Text;
 using System.IO;
 using BencodeNET.Parsing;
 using BencodeNET.Torrents;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace TorrentChain.Lambda.Controllers
 {
@@ -27,24 +31,26 @@ namespace TorrentChain.Lambda.Controllers
             BlockChain = _chainService.GetBlockChain()
         });
 
-        [HttpGet]
-        [Route("api/chain/add")]
-        public IActionResult UpdateChain()
+        
+        [HttpPost]
+        [Route("UploadTorrent")]
+        public async Task<IActionResult> UploadTorrent(List<IFormFile> files)
         {
-            try
-            {
-                // Read Torrent file from disk
-                var file = System.IO.File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "Files/alice.torrent"));
+            long size = files.Sum(f => f.Length);
 
-                _chainService.AddBlockToChain(new Data.Models.BlockData(file));
-
-                return Redirect("/");
-            }
-            catch(Exception e)
+            foreach (var formFile in files)
             {
-                _logger.LogError(e.Message, e);
-                return Redirect("/");
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await formFile.CopyToAsync(stream);
+                        _chainService.AddBlockToChain(new Data.Models.BlockData(stream.ToArray()));
+                    }
+                }
             }
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -24,5 +24,42 @@ namespace TorrentChain.Data.Utils
                 return false;
             }
         }
+
+        public static Torrent GetTorrentInformation(Block block)
+        {
+            try
+            {
+                var parser = new BencodeParser();
+                var torrent = parser.Parse<Torrent>(block.BlockData.Data.ToArray());
+
+                return torrent;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static string GetTorrentAuthor(Block block) {
+            try {
+                return GetTorrentInformation(block).CreatedBy;
+            }
+            catch
+            {
+                return "Not a valid Torrent file";
+            }
+        }
+
+        public static string GetTorrentTitle(Block block)
+        {
+            try
+            {
+                return GetTorrentInformation(block).DisplayName;
+            }
+            catch
+            {
+                return "Not a valid Torrent file";
+            }
+        }
     }
 }

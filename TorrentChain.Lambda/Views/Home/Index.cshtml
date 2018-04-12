@@ -1,39 +1,36 @@
-﻿@model TorrentChain.Web.Models.HomeViewModel;
-@{
-    ViewData["Title"] = "Home Page";
-}
-
+﻿@using TorrentChain.Data.Utils;
+@model TorrentChain.Web.Models.HomeViewModel;
 <div>
-    <form action="/api/chain/add">
-        <button>Add Block!</button>
-
-        <ul>
-            @foreach (var item in Model.BlockChain)
-            {
-                <li>
-                    <div>
-                        <strong>Index:</strong> <span>@item.Index</span>
-                    </div>
-                    <div>
-                        <strong>Hash:</strong> <span>@Convert.ToBase64String(item.Hash.ToArray())</span>
-                    </div>
-                    <div>
-                        <strong>Previous Hash:</strong> <span>@Convert.ToBase64String(item.PreviousHash.ToArray())</span>
-                    </div>
-                    <div>
-                        <strong>Data:</strong> <span>@System.Text.Encoding.Default.GetString(item.BlockData.Data.ToArray())</span>
-                    </div>
-                    <div>
-                        <strong>Torrent Title:</strong> <span>@item.BlockData.Title</span>
-                    </div>
-                    <div>
-                        <strong>Torrent Author:</strong> <span>@item.BlockData.Author</span>
-                    </div>
-                    <div>
-                        <strong>TimeStamp:</strong> <span>@item.TimeStamp.ToLocalTime()</span>
-                    </div>
-                </li>
-            }
-        </ul>
+    <form enctype="multipart/form-data" asp-controller="Home" asp-action="UploadTorrent">
+        <input type="file" name="files" multiple />
+        <input type="submit" value="Upload" />
     </form>
+    <ul>
+        @foreach (var item in Model.BlockChain)
+        {
+            <li>
+                <div>
+                    <strong>Index:</strong> <span>@item.Index</span>
+                </div>
+                <div>
+                    <strong>Hash:</strong> <span>@Convert.ToBase64String(item.Hash.ToArray())</span>
+                </div>
+                <div>
+                    <strong>Previous Hash:</strong> <span>@Convert.ToBase64String(item.PreviousHash.ToArray())</span>
+                </div>
+                <div>
+                    <strong>Data:</strong> <span>@item.BlockData.Data.Count()</span>
+                </div>
+                <div>
+                    <strong>Torrent Title:</strong> <span>@BlockUtils.GetTorrentTitle(item)</span>
+                </div>
+                <div>
+                    <strong>Torrent Author:</strong> <span>@BlockUtils.GetTorrentAuthor(item)</span>
+                </div>
+                <div>
+                    <strong>TimeStamp:</strong> <span>@item.TimeStamp.ToLocalTime()</span>
+                </div>
+            </li>
+        }
+    </ul>
 </div>

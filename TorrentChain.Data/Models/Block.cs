@@ -6,22 +6,23 @@ namespace TorrentChain.Data.Models
 {
     public class Block
     {
-        public Block(long index, IEnumerable<byte> previousHash, DateTime timestamp, IEnumerable<byte> hash, BlockData data)
+        public Block(BlockParams param)
         {
-            this.Index = index;
-            this.PreviousHash = previousHash;
-            this.TimeStamp = timestamp;
-            this._hash = hash;
-            this.BlockData = data;
+            this.Index = param.Index;
+            this.PreviousHash = param.PreviousHash;
+            this.TimeStamp = param.Timestamp;
+            this._hash = param.Hash;
+            this.BlockData = param.Data;
+            this.Signature = param.Signature;
         }
 
         public BlockData BlockData { get; set; }
 
+        public Signature Signature { get; set; }
+
         public long Index { get; set; }
         
         public DateTime TimeStamp { get; set; }
-        
-        public IEnumerable<byte> Signature { get; set; }
         
         private IEnumerable<byte> _hash { get; set; }
 
