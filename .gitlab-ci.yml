@@ -2,11 +2,13 @@
 stages:
   - build-client
   - build-server
+  - deploy-lambda
 
 build-client:
     image: node:8.1.0
     stage: build-client
-    script: "yarn build"
+    script:
+      - "yarn dist"
 
 build-server:
     image : microsoft/dotnet:latest
@@ -15,3 +17,7 @@ build-server:
       - "cd ./TorrentChain.Lambda"
       - "dotnet build"
 
+deploy-lambda:
+    stage: deploy-lambda
+    script:
+      - "echo do stuff here"
