@@ -1,7 +1,17 @@
 
+stages:
+  - build-client
+  - build-server
+
 build-client:
+    image: node:8.1.0
+    stage: build-client
     script: "yarn build"
 
-build:
-    script: "dotnet build"
+build-server:
+    image : microsoft/dotnet:latest
+    stage: build-server
+    script:
+      - "cd ./TorrentChain.Lambda"
+      - "dotnet build"
 
