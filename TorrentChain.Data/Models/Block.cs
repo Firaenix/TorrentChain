@@ -21,9 +21,9 @@ namespace TorrentChain.Data.Models
         public Signature Signature { get; set; }
 
         public long Index { get; set; }
-        
+
         public DateTime TimeStamp { get; set; }
-        
+
         private IEnumerable<byte> _hash { get; set; }
 
         public IEnumerable<byte> Hash => _hash;

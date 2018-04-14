@@ -18,7 +18,7 @@ namespace TorrentChain.Data.Models
         {
             _chain = chain;
             _logger = logger;
-            
+
             #if DEBUG
                 AddGenesisBlock();
             #endif
@@ -40,7 +40,7 @@ namespace TorrentChain.Data.Models
 
             _chain.AddLast(newBlock);
         }
-        
+
         public bool IsValidNewBlock(Block previousBlock, Block newBlock)
         {
             if (previousBlock.Index + 1 != newBlock.Index)
@@ -66,9 +66,16 @@ namespace TorrentChain.Data.Models
 
             var nextIndex = previousBlock.Index + 1;
             var nextTimestamp = DateTime.Now;
-            var nextHash = CalculateHash(previousBlock.Hash, nextIndex, nextTimestamp, newData.GetBytes());
 
-            return new Block(nextIndex, previousBlock.Hash, nextTimestamp, nextHash, newData);
+            var blockParams = new BlockParams() {
+                Data = newData,
+                Timestamp = nextTimestamp,
+                PreviousHash = previousBlock.Hash,
+                Index = nextIndex,
+                Hash = CalculateHash(previousBlock.Hash, nextIndex, nextTimestamp, newData.GetBytes())
+            };
+
+            return new Block(blockParams);
         }
 
         private IEnumerable<byte> CalculateBlockHash(Block block)
@@ -98,9 +105,16 @@ namespace TorrentChain.Data.Models
 
             var genesisData = new BlockData(Encoding.ASCII.GetBytes("This is the genesis block!!"));
             var sha512 = SHA512.Create();
-            var genesishash = sha512.ComputeHash(genesisData.GetBytes().ToArray());
-            var genesisBlock = new Block(0, new byte[0], DateTime.Now, genesishash, genesisData);
 
+            var blockParams = new BlockParams {
+                Hash = sha512.ComputeHash(genesisData.GetBytes().ToArray()),
+                PreviousHash = new byte[0],
+                Data = genesisData,
+                Index = 0,
+                Timestamp = DateTime.Now
+            };
+
+            var genesisBlock = new Block(blockParams);
             _chain.AddLast(genesisBlock);
         }
     }
