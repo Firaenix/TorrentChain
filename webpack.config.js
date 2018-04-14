@@ -70,7 +70,8 @@ const config = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      Components: `${PATHS.homeDir}/Components`
+      Components: `${PATHS.homeDir}/Components`,
+      Model: `${PATHS.homeDir}/Model`
     }
   },
   optimization: {

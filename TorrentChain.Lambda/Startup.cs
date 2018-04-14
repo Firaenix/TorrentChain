@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TorrentChain.Data.Models;
 using TorrentChain.Core.Services;
+using AutoMapper;
+using TorrentChain.Lambda.Models;
+using TorrentChain.Lambda.Mapper;
 
 namespace TorrentChain.Lambda
 {
@@ -24,6 +27,9 @@ namespace TorrentChain.Lambda
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSingleton<IMapperService, AutoMapperMapper>();
+            MappingRegistry.RegisterMappings();
 
             services.AddTransient<LinkedList<Block>>();
             services.AddSingleton<BlockChain>();
