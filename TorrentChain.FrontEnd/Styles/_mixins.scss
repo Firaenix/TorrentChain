@@ -1,0 +1,11 @@
+@mixin create-button($button-size, $button-colour) {
+  background-color: $button-colour;
+  color: lighten($button-colour, 20%);
+
+  width: $button-size;
+  height: $button-size / 2;
+
+  border: 0;
+
+  border-radius: $button-size / 4;
+}

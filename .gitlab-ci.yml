@@ -1,0 +1,7 @@
+
+build-client:
+    script: "yarn build"
+
+build:
+    script: "dotnet build"
+

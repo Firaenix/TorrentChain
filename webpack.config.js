@@ -68,7 +68,10 @@ const config = {
     rules: BundleHelpers.commonPlugins().concat(BundleHelpers.stylePlugins())
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      Components: `${PATHS.homeDir}/Components`
+    }
   },
   optimization: {
     splitChunks: {
@@ -81,10 +84,7 @@ const config = {
       }
     }
   },
-  plugins: [
-    new ExtractTextPlugin('[name].css'),
-    new WriteFilePlugin()
-  ]
+  plugins: [new ExtractTextPlugin(`[name].css`), new WriteFilePlugin()]
 };
 
 module.exports = config;
