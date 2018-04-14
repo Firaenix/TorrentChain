@@ -8,7 +8,11 @@ build-client:
     image: node:8.1.0
     stage: build-client
     script:
-      - "yarn dist"
+      - yarn
+      - yarn dist
+    artifacts:
+      paths:
+        - ./TorrentChain.Lambda/wwwroot/
 
 build-server:
     image : microsoft/dotnet:latest
