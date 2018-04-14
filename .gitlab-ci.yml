@@ -22,6 +22,8 @@ build-server:
       - "dotnet build"
 
 deploy-lambda:
+    image: node:8.1.0
     stage: deploy-lambda
     script:
-      - "echo do stuff here"
+      - yarn install serverless -g
+      - serverless deploy
