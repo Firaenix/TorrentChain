@@ -25,6 +25,13 @@ namespace TorrentChain.Web.Controllers.Api
         [HttpGet]
         public IActionResult Get()
         {
+            return Ok(_chainService.GetBlockChain());
+        }
+
+        [HttpGet]
+        [Route("torrentinfo")]
+        public IActionResult GetWithTorrentData()
+        {
             return Ok(_mapper.Map<IReadOnlyList<Block>, IReadOnlyList<BlockViewModel>>(_chainService.GetBlockChain()));
         }
     }

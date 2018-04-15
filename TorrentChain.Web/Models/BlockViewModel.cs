@@ -8,22 +8,12 @@ using TorrentChain.Data.Utils;
 
 namespace TorrentChain.Web.Models
 {
-    public class BlockViewModel
-    {
-        public BlockData BlockData { get; set; }
+  public class BlockViewModel
+  {
+    public Block Block { get; set; }
 
-        public Signature Signature { get; set; }
+    public Torrent TorrentInfo { get; set; }
 
-        public long Index { get; set; }
-
-        public DateTime TimeStamp { get; set; }
-
-        public byte[] Hash { get; set; }
-
-        public byte[] PreviousHash { get; set; }
-
-        public Torrent TorrentInfo { get; set; }
-
-        public string MagnetLink { get; set; }
-    }
+    public string MagnetLink { get; set; }
+  }
 }

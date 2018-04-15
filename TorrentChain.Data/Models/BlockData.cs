@@ -7,21 +7,19 @@ using System.Text;
 
 namespace TorrentChain.Data.Models
 {
-    public class BlockData
+  public class BlockData
+  {
+    public BlockData(IEnumerable<byte> data)
     {
-        public BlockData(IEnumerable<byte> data)
-        {
-            _data = data.ToArray();
-        }
-
-        private byte[] _data { get; set; }
-
-        public IEnumerable<byte> Data => _data;
-
-        // May need to modify this further later
-        public virtual IEnumerable<byte> GetBytes()
-        {
-            return _data;
-        }
+      Data = data.ToArray();
     }
+
+    public IEnumerable<byte> Data { get; }
+
+    // May need to modify this further later
+    public virtual IEnumerable<byte> GetBytes()
+    {
+      return Data;
+    }
+  }
 }

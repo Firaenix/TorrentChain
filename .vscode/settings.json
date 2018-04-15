@@ -1,6 +1,7 @@
 {
-  "editor.formatOnSave": true,
-  "emmet.triggerExpansionOnTab": true,
-  "typescriptHero.codeCompletion.completionSortMode": "default",
-  "typescriptHero.imports.organizeOnSave": true
+    "editor.formatOnSave": true,
+    "emmet.triggerExpansionOnTab": true,
+    "editor.tabSize": 4,
+    "typescriptHero.codeCompletion.completionSortMode": "default",
+    "typescriptHero.imports.organizeOnSave": true
 }
