@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorrentChain.Service", "Tor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorrentChain.Data", "TorrentChain.Data\TorrentChain.Data.csproj", "{5E258997-A466-40B1-92CE-694173A2A8E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorrentChain.Lambda", "TorrentChain.Lambda\TorrentChain.Lambda.csproj", "{BA479258-0C63-4EFD-822E-5495CB15392F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TorrentChain.Web", "TorrentChain.Lambda\TorrentChain.Web.csproj", "{BA479258-0C63-4EFD-822E-5495CB15392F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

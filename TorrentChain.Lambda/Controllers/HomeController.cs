@@ -1,16 +1,12 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using TorrentChain.Core.Services;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TorrentChain.Web.Models;
-using System.Text;
 using System.IO;
-using BencodeNET.Parsing;
-using BencodeNET.Torrents;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TorrentChain.Service;
 
 namespace TorrentChain.Lambda.Controllers
 {

@@ -2,18 +2,22 @@
 using System;
 using System.Collections.Generic;
 using TorrentChain.Data.Models;
+using TorrentChain.Service.Interfaces;
 
-namespace TorrentChain.Core.Services
+namespace TorrentChain.Service
 {
     public class ChainService : IChainService
     {
+        private readonly IChainResolutionService _chainResolutionService;
         private readonly BlockChain _blockChain;
         private readonly ILogger<ChainService> _logger;
 
-        public ChainService(BlockChain blockChain, ILogger<ChainService> logger)
+        public ChainService(IChainResolutionService chainResolutionService, ILogger<ChainService> logger)
         {
-            _blockChain = blockChain;
+            _chainResolutionService = chainResolutionService;
             _logger = logger;
+
+            _blockChain = _chainResolutionService.ResolveChain();
         }
 
         public IReadOnlyList<Block> GetBlockChain()

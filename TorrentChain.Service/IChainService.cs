@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TorrentChain.Data.Models;
 
-namespace TorrentChain.Core.Services
+namespace TorrentChain.Service
 {
     public interface IChainService
     {
