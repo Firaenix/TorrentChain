@@ -25,5 +25,5 @@ deploy-lambda:
     image: node:8.1.0
     stage: deploy-lambda
     script:
-      - yarn install serverless -g
+      - yarn add global serverless
       - serverless deploy
