@@ -23,5 +23,7 @@ namespace TorrentChain.Lambda.Models
         public byte[] PreviousHash { get; set; }
 
         public Torrent TorrentInfo { get; set; }
+
+        public string MagnetLink { get; set; }
     }
 }

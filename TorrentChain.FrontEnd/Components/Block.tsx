@@ -15,12 +15,12 @@ export class Block extends React.Component<Props> {
     return (
       <div>
         <div>
-          <span className="block-info">Number Of Pieces: </span>
-          {block.torrentInfo.numberOfPieces}
+          <span className="block-info">Magnet Link: </span>
+          <a href={block.magnetLink}>{block.magnetLink}</a>
         </div>
         <div>
-          <span className="block-info">Comment: </span>
-          {block.torrentInfo.comment}
+          <span className="block-info">Number Of Pieces: </span>
+          {block.torrentInfo.numberOfPieces}
         </div>
         <div>
           <span className="block-info">Display Name: </span>

@@ -45,7 +45,11 @@ namespace TorrentChain.Lambda.Controllers
                     using (var stream = new MemoryStream())
                     {
                         await formFile.CopyToAsync(stream);
-                        _chainService.AddBlockToChain(new Data.Models.BlockData(stream.ToArray()));
+
+                        for (int i = 0; i < 100; i++)
+                        {
+                            _chainService.AddBlockToChain(new Data.Models.BlockData(stream.ToArray()));
+                        }
                     }
                 }
             }

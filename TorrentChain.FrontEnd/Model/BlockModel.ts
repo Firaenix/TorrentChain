@@ -12,4 +12,5 @@ export interface BlockModel {
   hash: string;
   previousHash: string;
   torrentInfo: TorrentInfo;
+  magnetLink: string;
 }

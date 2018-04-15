@@ -5,7 +5,7 @@ import { GlobalState } from 'store';
 export const BlockChainActions = (store: any) => ({
   getBlockChain: async (state: GlobalState): Promise<Partial<GlobalState>> => {
     const response = await axios.get('/api/blockchain');
-    debugger;
+
     return {
       ...state,
       blockChain: response.data

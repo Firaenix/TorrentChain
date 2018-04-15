@@ -22,7 +22,11 @@ namespace TorrentChain.Lambda.Mapper
             {
                 cfg.CreateMap<Block, BlockViewModel>()
                 .ForMember(dest => dest.TorrentInfo, opts => opts.MapFrom(
-                            src => BlockUtils.GetTorrentInformation(src)))
+                            src => BlockUtils.GetTorrentInformation(src)
+                           ))
+                .ForMember(dest => dest.MagnetLink, opts => opts.MapFrom(
+                           src => BlockUtils.GetTorrentInformation(src).GetMagnetLink(BencodeNET.Torrents.MagnetLinkOptions.IncludeTrackers)
+                           ))
                            .ReverseMap();
             });
         }
