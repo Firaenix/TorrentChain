@@ -21,7 +21,7 @@ namespace TorrentChain.Service
       _blockChainLogger = blockChainLogger;
     }
 
-    public async Task<BlockChain> ResolveChainAsync()
+    public async Task<BlockChain> ResolveChain()
     {
       using (var client = new HttpClient())
       {
