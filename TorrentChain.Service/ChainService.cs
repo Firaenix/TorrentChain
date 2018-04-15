@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TorrentChain.Data.Models;
 using TorrentChain.Service.Interfaces;
 
@@ -17,9 +18,9 @@ namespace TorrentChain.Service
             _chainResolutionService = chainResolutionService;
             _logger = logger;
 
-            _blockChain = _chainResolutionService.ResolveChain();
+            _blockChain = _chainResolutionService.ResolveChain().Result;
         }
-
+        
         public IReadOnlyList<Block> GetBlockChain()
         {
             return _blockChain.GetChain();

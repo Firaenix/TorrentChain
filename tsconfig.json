@@ -1,28 +1,21 @@
 {
   "compilerOptions": {
-      "outDir": "./TorrentChain.Lambda/wwwroot/dist/",
-      "sourceMap": true,
-      "noImplicitAny": true,
-      "module": "commonjs",
-      "target": "es5",
-      "jsx": "react",
-      "allowSyntheticDefaultImports": true,
-      "suppressImplicitAnyIndexErrors": true,
-      "experimentalDecorators": true,
-      "noUnusedLocals": true,
-      "lib": [
-          "esnext",
-          "dom"
-      ],
-      "baseUrl": "./TorrentChain.FrontEnd/",
-      "paths": {
-          "~/*": [
-              "./*"
-          ]
-      },
-      "pretty": true
+    "outDir": "./TorrentChain.Web/wwwroot/dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "lib": ["esnext", "dom"],
+    "baseUrl": "./TorrentChain.FrontEnd/",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "pretty": true
   },
-  "exclude": [
-      "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

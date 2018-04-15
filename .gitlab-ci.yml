@@ -12,13 +12,13 @@ build-client:
       - yarn dist
     artifacts:
       paths:
-        - ./TorrentChain.Lambda/wwwroot/
+        - ./TorrentChain.Web/wwwroot/
 
 build-server:
     image : microsoft/dotnet:latest
     stage: build-server
     script:
-      - "cd ./TorrentChain.Lambda"
+      - "cd ./TorrentChain.Web"
       - "dotnet build"
 
 deploy-lambda:

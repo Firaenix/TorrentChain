@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using TorrentChain.Data.Models;
 using TorrentChain.Service.Interfaces;
 
@@ -18,9 +21,16 @@ namespace TorrentChain.Service
             _blockChainLogger = blockChainLogger;
         }
 
-        public BlockChain ResolveChain()
+        public async Task<BlockChain> ResolveChain()
         {
-            return new BlockChain(new LinkedList<Block>(), _blockChainLogger);
+            using (var client = new HttpClient())
+            {
+                var message = await client.GetAsync("http://torrentchainweb-test.ap-southeast-2.elasticbeanstalk.com/api/blockchain");
+                var blockChainJson = await message.Content.ReadAsStringAsync();
+
+                var chain = JsonConvert.DeserializeObject<LinkedList<Block>>(blockChainJson);
+                return new BlockChain(chain, _blockChainLogger);
+            }
         }
     }
 }

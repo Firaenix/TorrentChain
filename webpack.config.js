@@ -6,7 +6,7 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 
 const PATHS = {
   homeDir: path.join(__dirname, './TorrentChain.FrontEnd/'),
-  outputDir: path.join(__dirname, './TorrentChain.Lambda/wwwroot')
+  outputDir: path.join(__dirname, './TorrentChain.Web/wwwroot')
 };
 
 class BundleHelpers {

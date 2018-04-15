@@ -6,6 +6,9 @@ namespace TorrentChain.Data.Models
 {
     public class Block
     {
+        // Purely for deserialisation
+        public Block() { }
+
         public Block(BlockParams param)
         {
             this.Index = param.Index;
