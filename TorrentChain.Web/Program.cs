@@ -21,7 +21,7 @@ namespace TorrentChain.Web
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseKestrel()
-                .UseUrls("http://*:5000", "http://*")
+                .UseUrls("http://*:5000")//, "http://*:80")
                 .Build();
     }
 }

@@ -1,15 +1,12 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/TorrentChain.Lambda/TorrentChain.Lambda.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/TorrentChain.Web/TorrentChain.Web.csproj"],
+      "problemMatcher": "$msCompile"
+    }
+  ]
 }
