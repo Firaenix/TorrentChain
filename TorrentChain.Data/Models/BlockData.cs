@@ -14,12 +14,6 @@ namespace TorrentChain.Data.Models
             Data = data.ToArray();
         }
 
-        public byte[] Data { get; }
-
-        // May need to modify this further later
-        public virtual IEnumerable<byte> GetBytes()
-        {
-            return Data;
-        }
+        public IEnumerable<byte> Data { get; }
     }
 }
