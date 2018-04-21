@@ -1,0 +1,16 @@
+service BlockSync {
+    rpc SendBlock (SendBlockRequest) returns (SendBlockReply) {}
+}
+  
+message SendBlockRequest {
+    int64 Index = 1;
+    bytes BlockData = 1;
+    bytes Hash = 2;
+    bytes PreviousHash = 3;
+    bytes Signature = 4;
+    string TimeStamp = 5;
+} 
+
+message SendBlockReply {
+    bool Success = 1;
+}

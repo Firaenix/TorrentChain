@@ -9,5 +9,7 @@ namespace TorrentChain.Service.Interfaces
     public interface IChainResolutionService
     {
         Task<BlockChain> ResolveChain();
+
+        Task BroadcastNewBlock(Block block);
     }
 }

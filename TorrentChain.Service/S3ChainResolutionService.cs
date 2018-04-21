@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using TorrentChain.Data.Models;
 using TorrentChain.Service.Interfaces;
-using TorrentChain.Service.Models;
 
 namespace TorrentChain.Service
 {
@@ -21,6 +20,11 @@ namespace TorrentChain.Service
         {
             _logger = logger;
             _blockChainLogger = blockChainLogger;
+        }
+
+        public Task BroadcastNewBlock(Block block)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<BlockChain> ResolveChain()

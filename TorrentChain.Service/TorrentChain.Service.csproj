@@ -1,25 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <Compile Remove="Interfaces\IChainResolutionServie.cs" />
+    <Compile Remove="Interfaces\IChainResolutionServie.cs"/>
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2"/>
+    <PackageReference Include="Grpc.Tools" Version="1.11.0"/>
+    <PackageReference Include="Grpc.Core" Version="1.11.0"/>
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\TorrentChain.Data\TorrentChain.Data.csproj" />
+    <ProjectReference Include="..\TorrentChain.Data\TorrentChain.Data.csproj"/>
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="Microsoft.Extensions.Logging.Abstractions">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.0.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
-
 </Project>
