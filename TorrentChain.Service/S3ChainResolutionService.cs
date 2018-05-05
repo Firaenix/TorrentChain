@@ -32,15 +32,15 @@ namespace TorrentChain.Service
             throw new NotImplementedException();
         }
 
-        public async Task<BlockChain> ResolveChain()
+        public Task<BlockChain> ResolveChain()
         {
             using (var client = new HttpClient())
             {
-                var message = await client.GetAsync("http://somewherecool/api/blockchain");
-                var blockChainJson = await message.Content.ReadAsStringAsync();
+                // var message = await client.GetAsync("http://somewherecool/api/blockchain");
+                // var blockChainJson = await message.Content.ReadAsStringAsync();
 
-                var chain = JsonConvert.DeserializeObject<LinkedList<Block>>(blockChainJson);
-                return new BlockChain(chain, _blockChainLogger);
+                // var chain = JsonConvert.DeserializeObject<LinkedList<Block>>(blockChainJson);
+                return Task.FromResult(new BlockChain(null, null));
             }
 
             // return Task.FromResult(new BlockChain(new LinkedList<Block>(), _blockChainLogger));

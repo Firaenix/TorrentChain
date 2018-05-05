@@ -20,16 +20,23 @@ public static partial class BlockSyncServiceReflection {
   static BlockSyncServiceReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "ChZCbG9ja1N5bmNTZXJ2aWNlLnByb3RvIn4KEFNlbmRCbG9ja1JlcXVlc3QS",
-          "DQoFSW5kZXgYASABKAMSEQoJQmxvY2tEYXRhGAIgASgMEgwKBEhhc2gYAyAB",
-          "KAwSFAoMUHJldmlvdXNIYXNoGAQgASgMEhEKCVNpZ25hdHVyZRgFIAEoDBIR",
-          "CglUaW1lU3RhbXAYBiABKAMiIQoOU2VuZEJsb2NrUmVwbHkSDwoHU3VjY2Vz",
-          "cxgBIAEoCDI+CglCbG9ja1N5bmMSMQoJU2VuZEJsb2NrEhEuU2VuZEJsb2Nr",
-          "UmVxdWVzdBoPLlNlbmRCbG9ja1JlcGx5IgBiBnByb3RvMw=="));
+          "ChZCbG9ja1N5bmNTZXJ2aWNlLnByb3RvIngKClByb3RvQmxvY2sSDQoFSW5k",
+          "ZXgYASABKAMSEQoJQmxvY2tEYXRhGAIgASgMEgwKBEhhc2gYAyABKAwSFAoM",
+          "UHJldmlvdXNIYXNoGAQgASgMEhEKCVNpZ25hdHVyZRgFIAEoDBIRCglUaW1l",
+          "U3RhbXAYBiABKAMiFQoTUmVzb2x2ZUNoYWluUmVxdWVzdCI0ChFSZXNvbHZl",
+          "Q2hhaW5SZXBseRIfCgpCbG9ja2NoYWluGAEgAygLMgsuUHJvdG9CbG9jayIu",
+          "ChBTZW5kQmxvY2tSZXF1ZXN0EhoKBUJsb2NrGAEgASgLMgsuUHJvdG9CbG9j",
+          "ayIhCg5TZW5kQmxvY2tSZXBseRIPCgdTdWNjZXNzGAEgASgIMnoKCUJsb2Nr",
+          "U3luYxIxCglTZW5kQmxvY2sSES5TZW5kQmxvY2tSZXF1ZXN0Gg8uU2VuZEJs",
+          "b2NrUmVwbHkiABI6CgxSZXNvbHZlQ2hhaW4SFC5SZXNvbHZlQ2hhaW5SZXF1",
+          "ZXN0GhIuUmVzb2x2ZUNoYWluUmVwbHkiAGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::SendBlockRequest), global::SendBlockRequest.Parser, new[]{ "Index", "BlockData", "Hash", "PreviousHash", "Signature", "TimeStamp" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProtoBlock), global::ProtoBlock.Parser, new[]{ "Index", "BlockData", "Hash", "PreviousHash", "Signature", "TimeStamp" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ResolveChainRequest), global::ResolveChainRequest.Parser, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ResolveChainReply), global::ResolveChainReply.Parser, new[]{ "Blockchain" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SendBlockRequest), global::SendBlockRequest.Parser, new[]{ "Block" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SendBlockReply), global::SendBlockReply.Parser, new[]{ "Success" }, null, null, null)
         }));
   }
@@ -37,10 +44,10 @@ public static partial class BlockSyncServiceReflection {
 
 }
 #region Messages
-public sealed partial class SendBlockRequest : pb::IMessage<SendBlockRequest> {
-  private static readonly pb::MessageParser<SendBlockRequest> _parser = new pb::MessageParser<SendBlockRequest>(() => new SendBlockRequest());
+public sealed partial class ProtoBlock : pb::IMessage<ProtoBlock> {
+  private static readonly pb::MessageParser<ProtoBlock> _parser = new pb::MessageParser<ProtoBlock>(() => new ProtoBlock());
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pb::MessageParser<SendBlockRequest> Parser { get { return _parser; } }
+  public static pb::MessageParser<ProtoBlock> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
@@ -53,14 +60,14 @@ public sealed partial class SendBlockRequest : pb::IMessage<SendBlockRequest> {
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public SendBlockRequest() {
+  public ProtoBlock() {
     OnConstruction();
   }
 
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public SendBlockRequest(SendBlockRequest other) : this() {
+  public ProtoBlock(ProtoBlock other) : this() {
     index_ = other.index_;
     blockData_ = other.blockData_;
     hash_ = other.hash_;
@@ -70,8 +77,8 @@ public sealed partial class SendBlockRequest : pb::IMessage<SendBlockRequest> {
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public SendBlockRequest Clone() {
-    return new SendBlockRequest(this);
+  public ProtoBlock Clone() {
+    return new ProtoBlock(this);
   }
 
   /// <summary>Field number for the "Index" field.</summary>
@@ -142,11 +149,11 @@ public sealed partial class SendBlockRequest : pb::IMessage<SendBlockRequest> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
-    return Equals(other as SendBlockRequest);
+    return Equals(other as ProtoBlock);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool Equals(SendBlockRequest other) {
+  public bool Equals(ProtoBlock other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
@@ -232,7 +239,7 @@ public sealed partial class SendBlockRequest : pb::IMessage<SendBlockRequest> {
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void MergeFrom(SendBlockRequest other) {
+  public void MergeFrom(ProtoBlock other) {
     if (other == null) {
       return;
     }
@@ -294,6 +301,327 @@ public sealed partial class SendBlockRequest : pb::IMessage<SendBlockRequest> {
 
 }
 
+public sealed partial class ResolveChainRequest : pb::IMessage<ResolveChainRequest> {
+  private static readonly pb::MessageParser<ResolveChainRequest> _parser = new pb::MessageParser<ResolveChainRequest>(() => new ResolveChainRequest());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<ResolveChainRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BlockSyncServiceReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ResolveChainRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ResolveChainRequest(ResolveChainRequest other) : this() {
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ResolveChainRequest Clone() {
+    return new ResolveChainRequest(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as ResolveChainRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(ResolveChainRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(ResolveChainRequest other) {
+    if (other == null) {
+      return;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+      }
+    }
+  }
+
+}
+
+public sealed partial class ResolveChainReply : pb::IMessage<ResolveChainReply> {
+  private static readonly pb::MessageParser<ResolveChainReply> _parser = new pb::MessageParser<ResolveChainReply>(() => new ResolveChainReply());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<ResolveChainReply> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BlockSyncServiceReflection.Descriptor.MessageTypes[2]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ResolveChainReply() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ResolveChainReply(ResolveChainReply other) : this() {
+    blockchain_ = other.blockchain_.Clone();
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ResolveChainReply Clone() {
+    return new ResolveChainReply(this);
+  }
+
+  /// <summary>Field number for the "Blockchain" field.</summary>
+  public const int BlockchainFieldNumber = 1;
+  private static readonly pb::FieldCodec<global::ProtoBlock> _repeated_blockchain_codec
+      = pb::FieldCodec.ForMessage(10, global::ProtoBlock.Parser);
+  private readonly pbc::RepeatedField<global::ProtoBlock> blockchain_ = new pbc::RepeatedField<global::ProtoBlock>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::ProtoBlock> Blockchain {
+    get { return blockchain_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as ResolveChainReply);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(ResolveChainReply other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if(!blockchain_.Equals(other.blockchain_)) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    hash ^= blockchain_.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    blockchain_.WriteTo(output, _repeated_blockchain_codec);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    size += blockchain_.CalculateSize(_repeated_blockchain_codec);
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(ResolveChainReply other) {
+    if (other == null) {
+      return;
+    }
+    blockchain_.Add(other.blockchain_);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 10: {
+          blockchain_.AddEntriesFrom(input, _repeated_blockchain_codec);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class SendBlockRequest : pb::IMessage<SendBlockRequest> {
+  private static readonly pb::MessageParser<SendBlockRequest> _parser = new pb::MessageParser<SendBlockRequest>(() => new SendBlockRequest());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<SendBlockRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BlockSyncServiceReflection.Descriptor.MessageTypes[3]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public SendBlockRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public SendBlockRequest(SendBlockRequest other) : this() {
+    Block = other.block_ != null ? other.Block.Clone() : null;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public SendBlockRequest Clone() {
+    return new SendBlockRequest(this);
+  }
+
+  /// <summary>Field number for the "Block" field.</summary>
+  public const int BlockFieldNumber = 1;
+  private global::ProtoBlock block_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::ProtoBlock Block {
+    get { return block_; }
+    set {
+      block_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as SendBlockRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(SendBlockRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(Block, other.Block)) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (block_ != null) hash ^= Block.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (block_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(Block);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (block_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Block);
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(SendBlockRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.block_ != null) {
+      if (block_ == null) {
+        block_ = new global::ProtoBlock();
+      }
+      Block.MergeFrom(other.Block);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 10: {
+          if (block_ == null) {
+            block_ = new global::ProtoBlock();
+          }
+          input.ReadMessage(block_);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
 public sealed partial class SendBlockReply : pb::IMessage<SendBlockReply> {
   private static readonly pb::MessageParser<SendBlockReply> _parser = new pb::MessageParser<SendBlockReply>(() => new SendBlockReply());
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -301,7 +629,7 @@ public sealed partial class SendBlockReply : pb::IMessage<SendBlockReply> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::BlockSyncServiceReflection.Descriptor.MessageTypes[1]; }
+    get { return global::BlockSyncServiceReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

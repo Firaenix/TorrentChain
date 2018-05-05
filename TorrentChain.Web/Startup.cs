@@ -33,7 +33,8 @@ namespace TorrentChain.Web
             //services.AddSingleton<BlockChain>();
             services.AddSingleton<IChainService, ChainService>();
 
-            services.AddTransient<IChainResolutionService, S3ChainResolutionService>();
+            // services.AddTransient<IChainResolutionService, S3ChainResolutionService>();
+            services.AddSingleton<IChainResolutionService, PeerChainResolutionService>();
 
             services.AddLogging();
         }

@@ -2,15 +2,27 @@ syntax = "proto3";
 
 service BlockSync {
     rpc SendBlock (SendBlockRequest) returns (SendBlockReply) {}
+    rpc ResolveChain (ResolveChainRequest) returns (ResolveChainReply) {}
 }
-  
-message SendBlockRequest {
+
+message ProtoBlock {
     int64 Index = 1;
     bytes BlockData = 2;
     bytes Hash = 3;
     bytes PreviousHash = 4;
     bytes Signature = 5;
     int64 TimeStamp = 6;
+}
+
+message ResolveChainRequest {
+}
+
+message ResolveChainReply {
+    repeated ProtoBlock Blockchain = 1;
+}
+  
+message SendBlockRequest {
+    ProtoBlock Block = 1;
 } 
 
 message SendBlockReply {

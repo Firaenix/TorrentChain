@@ -15,6 +15,8 @@ namespace TorrentChain.Service
 
         static readonly grpc::Marshaller<global::SendBlockRequest> __Marshaller_SendBlockRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SendBlockRequest.Parser.ParseFrom);
         static readonly grpc::Marshaller<global::SendBlockReply> __Marshaller_SendBlockReply = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SendBlockReply.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::ResolveChainRequest> __Marshaller_ResolveChainRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ResolveChainRequest.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::ResolveChainReply> __Marshaller_ResolveChainReply = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ResolveChainReply.Parser.ParseFrom);
 
         static readonly grpc::Method<global::SendBlockRequest, global::SendBlockReply> __Method_SendBlock = new grpc::Method<global::SendBlockRequest, global::SendBlockReply>(
             grpc::MethodType.Unary,
@@ -22,6 +24,13 @@ namespace TorrentChain.Service
             "SendBlock",
             __Marshaller_SendBlockRequest,
             __Marshaller_SendBlockReply);
+
+        static readonly grpc::Method<global::ResolveChainRequest, global::ResolveChainReply> __Method_ResolveChain = new grpc::Method<global::ResolveChainRequest, global::ResolveChainReply>(
+            grpc::MethodType.Unary,
+            __ServiceName,
+            "ResolveChain",
+            __Marshaller_ResolveChainRequest,
+            __Marshaller_ResolveChainReply);
 
         /// <summary>Service descriptor</summary>
         public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -33,6 +42,11 @@ namespace TorrentChain.Service
         public abstract partial class BlockSyncBase
         {
             public virtual global::System.Threading.Tasks.Task<global::SendBlockReply> SendBlock(global::SendBlockRequest request, grpc::ServerCallContext context)
+            {
+                throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+            }
+
+            public virtual global::System.Threading.Tasks.Task<global::ResolveChainReply> ResolveChain(global::ResolveChainRequest request, grpc::ServerCallContext context)
             {
                 throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
             }
@@ -78,6 +92,22 @@ namespace TorrentChain.Service
             {
                 return CallInvoker.AsyncUnaryCall(__Method_SendBlock, null, options, request);
             }
+            public virtual global::ResolveChainReply ResolveChain(global::ResolveChainRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+            {
+                return ResolveChain(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+            }
+            public virtual global::ResolveChainReply ResolveChain(global::ResolveChainRequest request, grpc::CallOptions options)
+            {
+                return CallInvoker.BlockingUnaryCall(__Method_ResolveChain, null, options, request);
+            }
+            public virtual grpc::AsyncUnaryCall<global::ResolveChainReply> ResolveChainAsync(global::ResolveChainRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+            {
+                return ResolveChainAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+            }
+            public virtual grpc::AsyncUnaryCall<global::ResolveChainReply> ResolveChainAsync(global::ResolveChainRequest request, grpc::CallOptions options)
+            {
+                return CallInvoker.AsyncUnaryCall(__Method_ResolveChain, null, options, request);
+            }
             /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
             protected override BlockSyncClient NewInstance(ClientBaseConfiguration configuration)
             {
@@ -90,7 +120,8 @@ namespace TorrentChain.Service
         public static grpc::ServerServiceDefinition BindService(BlockSyncBase serviceImpl)
         {
             return grpc::ServerServiceDefinition.CreateBuilder()
-                .AddMethod(__Method_SendBlock, serviceImpl.SendBlock).Build();
+                .AddMethod(__Method_SendBlock, serviceImpl.SendBlock)
+                .AddMethod(__Method_ResolveChain, serviceImpl.ResolveChain).Build();
         }
 
     }

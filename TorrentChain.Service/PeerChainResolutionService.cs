@@ -17,6 +17,8 @@ namespace TorrentChain.Service
     {
         private readonly ILogger<PeerChainResolutionService> _logger;
         private readonly ILogger<BlockChain> _blockChainLogger;
+
+        private readonly Server _server;
         private readonly Channel _channel;
         private readonly BlockSync.BlockSyncClient _client;
 
@@ -24,6 +26,14 @@ namespace TorrentChain.Service
         {
             _logger = logger;
             _blockChainLogger = blockChainLogger;
+
+            _server = new Server
+            {
+                Services = { BlockSync.BindService(new BlockSyncServiceImpl()) },
+                Ports = { new ServerPort("localhost", 50051, ServerCredentials.Insecure) }
+            };
+            _server.Start();
+
 
             _channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
             // var thing = BlockSync.BindService(new BlockSyncServiceImpl());
@@ -34,16 +44,21 @@ namespace TorrentChain.Service
         {
             var req = new SendBlockRequest
             {
-                Index = block.Index,
-                BlockData = block.BlockData.Data as ByteString,
-                Hash = block.Hash as ByteString,
-                PreviousHash = block.PreviousHash as ByteString,
-                Signature = block.Signature.Bytes as ByteString,
-                TimeStamp = new DateTimeOffset(block.TimeStamp).ToUnixTimeMilliseconds()
+                Block = new Block
+                {
+                    Index = block.Index,
+                    BlockData = block.BlockData.Data as ByteString,
+                    Hash = block.Hash as ByteString,
+                    PreviousHash = block.PreviousHash as ByteString,
+                    Signature = block.Signature.Bytes as ByteString,
+                    TimeStamp = new DateTimeOffset(block.TimeStamp).ToUnixTimeMilliseconds()
+                }
             };
 
             var result = await _client.SendBlockAsync(req);
             _logger.LogInformation($"Sent block to client with response: {result.Success}");
+
+            await _channel.ShutdownAsync();
         }
 
         public Task ReceieveBlock(Block block)
@@ -51,17 +66,18 @@ namespace TorrentChain.Service
             throw new NotImplementedException();
         }
 
-        public async Task<BlockChain> ResolveChain()
+        public Task<BlockChain> ResolveChain()
         {
-            using (var client = new HttpClient())
-            {
+            throw new NotImplementedException();
+            // using (var client = new HttpClient())
+            // {
 
-                var message = await client.GetAsync("http://somewherecool/api/blockchain");
-                var blockChainJson = await message.Content.ReadAsStringAsync();
+            //     var message = await client.GetAsync("http://somewherecool/api/blockchain");
+            //     var blockChainJson = await message.Content.ReadAsStringAsync();
 
-                var chain = JsonConvert.DeserializeObject<LinkedList<Block>>(blockChainJson);
-                return new BlockChain(chain, _blockChainLogger);
-            }
+            //     var chain = JsonConvert.DeserializeObject<LinkedList<Block>>(blockChainJson);
+            //     return new BlockChain(chain, _blockChainLogger);
+            // }
 
             // return Task.FromResult(new BlockChain(new LinkedList<Block>(), _blockChainLogger));
         }
