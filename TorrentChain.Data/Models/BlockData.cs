@@ -15,5 +15,10 @@ namespace TorrentChain.Data.Models
         }
 
         public IEnumerable<byte> Data { get; }
+
+        public IEnumerable<byte> GetBytes()
+        {
+            return Data;
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace TorrentChain.Service.Interfaces
         Task<BlockChain> ResolveChain();
 
         Task BroadcastNewBlock(Block block);
+
+        Task ReceieveBlock(Block block);
     }
 }

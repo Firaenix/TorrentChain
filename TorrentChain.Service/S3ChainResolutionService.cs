@@ -27,6 +27,11 @@ namespace TorrentChain.Service
             throw new NotImplementedException();
         }
 
+        public Task ReceieveBlock(Block block)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<BlockChain> ResolveChain()
         {
             using (var client = new HttpClient())
