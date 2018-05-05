@@ -1,85 +1,44 @@
-﻿using Grpc.Core;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using TorrentChain.Data.Models;
-using TorrentChain.Service.Interfaces;
 using Google.Protobuf;
+using Grpc.Core;
+using Microsoft.Extensions.Logging;
+using TorrentChain.Data.Models;
+using TorrentChain.Service.Contracts;
+using TorrentChain.Service.Interfaces;
+using TorrentChain.Service.Mapper;
 
 namespace TorrentChain.Service
 {
     public class PeerChainResolutionService : IChainResolutionService
     {
+        private readonly IBroadcastClient _client;
         private readonly ILogger<PeerChainResolutionService> _logger;
-        private readonly ILogger<BlockChain> _blockChainLogger;
-
-        private readonly Server _server;
-        private readonly Channel _channel;
-        private readonly BlockSync.BlockSyncClient _client;
-
-        public PeerChainResolutionService(ILogger<PeerChainResolutionService> logger, ILogger<BlockChain> blockChainLogger)
+        private readonly IMapperService _mapper;
+        
+        public PeerChainResolutionService(ILogger<PeerChainResolutionService> logger, IBroadcastClient client)
         {
             _logger = logger;
-            _blockChainLogger = blockChainLogger;
+            _client = client;
+        }
 
-            _server = new Server
+        public async Task<IBlockChain> ResolveChain()
+        {
+            try
             {
-                Services = { BlockSync.BindService(new BlockSyncServiceImpl()) },
-                Ports = { new ServerPort("localhost", 50051, ServerCredentials.Insecure) }
-            };
-            _server.Start();
+                var reply = await _client.ResolveChain();
 
+                var blocks = _mapper.Map<ProtoBlock[], Block[]>(reply.Blockchain.ToArray());
 
-            _channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
-            // var thing = BlockSync.BindService(new BlockSyncServiceImpl());
-            _client = new BlockSync.BlockSyncClient(_channel);
-        }
-
-        public async Task BroadcastNewBlock(Block block)
-        {
-            var req = new SendBlockRequest
+                return new BlockChain().ReplaceChain(new LinkedList<Block>(blocks));
+            }
+            catch (Exception e)
             {
-                Block = new Block
-                {
-                    Index = block.Index,
-                    BlockData = block.BlockData.Data as ByteString,
-                    Hash = block.Hash as ByteString,
-                    PreviousHash = block.PreviousHash as ByteString,
-                    Signature = block.Signature.Bytes as ByteString,
-                    TimeStamp = new DateTimeOffset(block.TimeStamp).ToUnixTimeMilliseconds()
-                }
-            };
-
-            var result = await _client.SendBlockAsync(req);
-            _logger.LogInformation($"Sent block to client with response: {result.Success}");
-
-            await _channel.ShutdownAsync();
-        }
-
-        public Task ReceieveBlock(Block block)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<BlockChain> ResolveChain()
-        {
-            throw new NotImplementedException();
-            // using (var client = new HttpClient())
-            // {
-
-            //     var message = await client.GetAsync("http://somewherecool/api/blockchain");
-            //     var blockChainJson = await message.Content.ReadAsStringAsync();
-
-            //     var chain = JsonConvert.DeserializeObject<LinkedList<Block>>(blockChainJson);
-            //     return new BlockChain(chain, _blockChainLogger);
-            // }
-
-            // return Task.FromResult(new BlockChain(new LinkedList<Block>(), _blockChainLogger));
+                _logger.LogError(e.Message, e);
+                throw;
+            }
         }
     }
 }

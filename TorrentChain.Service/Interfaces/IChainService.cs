@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using TorrentChain.Data.Models;
 
-namespace TorrentChain.Service
+namespace TorrentChain.Service.Interfaces
 {
     public interface IChainService
     {

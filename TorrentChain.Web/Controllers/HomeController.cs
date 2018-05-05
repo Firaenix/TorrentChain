@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TorrentChain.Data.Models;
 using TorrentChain.Service;
+using TorrentChain.Service.Interfaces;
 
 namespace TorrentChain.Web.Controllers
 {
@@ -42,10 +44,7 @@ namespace TorrentChain.Web.Controllers
                     {
                         await formFile.CopyToAsync(stream);
 
-                        for (int i = 0; i < 100; i++)
-                        {
-                            _chainService.AddBlockToChain(new Data.Models.BlockData(stream.ToArray()));
-                        }
+                        _chainService.AddBlockToChain(new BlockData(stream.ToArray()));
                     }
                 }
             }

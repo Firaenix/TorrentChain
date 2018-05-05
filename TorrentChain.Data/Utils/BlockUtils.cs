@@ -1,9 +1,6 @@
-﻿using BencodeNET.Parsing;
+﻿using System.Linq;
+using BencodeNET.Parsing;
 using BencodeNET.Torrents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TorrentChain.Data.Models;
 
 namespace TorrentChain.Data.Utils
@@ -16,7 +13,7 @@ namespace TorrentChain.Data.Utils
             {
                 var parser = new BencodeParser();
                 var torrent = parser.Parse<Torrent>(blockData.Data.ToArray());
-                
+
                 return true;
             }
             catch
@@ -40,8 +37,10 @@ namespace TorrentChain.Data.Utils
             }
         }
 
-        public static string GetTorrentAuthor(Block block) {
-            try {
+        public static string GetTorrentAuthor(Block block)
+        {
+            try
+            {
                 return GetTorrentInformation(block).CreatedBy;
             }
             catch

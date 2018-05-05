@@ -20,10 +20,10 @@ message ResolveChainRequest {
 message ResolveChainReply {
     repeated ProtoBlock Blockchain = 1;
 }
-  
+
 message SendBlockRequest {
     ProtoBlock Block = 1;
-} 
+}
 
 message SendBlockReply {
     bool Success = 1;

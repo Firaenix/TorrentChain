@@ -7,25 +7,25 @@
 
 using grpc = global::Grpc.Core;
 
-namespace TorrentChain.Service
+namespace TorrentChain.Service.Contracts
 {
     public static partial class BlockSync
     {
         static readonly string __ServiceName = "BlockSync";
 
-        static readonly grpc::Marshaller<global::SendBlockRequest> __Marshaller_SendBlockRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SendBlockRequest.Parser.ParseFrom);
-        static readonly grpc::Marshaller<global::SendBlockReply> __Marshaller_SendBlockReply = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::SendBlockReply.Parser.ParseFrom);
-        static readonly grpc::Marshaller<global::ResolveChainRequest> __Marshaller_ResolveChainRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ResolveChainRequest.Parser.ParseFrom);
-        static readonly grpc::Marshaller<global::ResolveChainReply> __Marshaller_ResolveChainReply = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::ResolveChainReply.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::TorrentChain.Service.Contracts.SendBlockRequest> __Marshaller_SendBlockRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::TorrentChain.Service.Contracts.SendBlockRequest.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::TorrentChain.Service.Contracts.SendBlockReply> __Marshaller_SendBlockReply = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::TorrentChain.Service.Contracts.SendBlockReply.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::TorrentChain.Service.Contracts.ResolveChainRequest> __Marshaller_ResolveChainRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::TorrentChain.Service.Contracts.ResolveChainRequest.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::TorrentChain.Service.Contracts.ResolveChainReply> __Marshaller_ResolveChainReply = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::TorrentChain.Service.Contracts.ResolveChainReply.Parser.ParseFrom);
 
-        static readonly grpc::Method<global::SendBlockRequest, global::SendBlockReply> __Method_SendBlock = new grpc::Method<global::SendBlockRequest, global::SendBlockReply>(
+        static readonly grpc::Method<global::TorrentChain.Service.Contracts.SendBlockRequest, global::TorrentChain.Service.Contracts.SendBlockReply> __Method_SendBlock = new grpc::Method<global::TorrentChain.Service.Contracts.SendBlockRequest, global::TorrentChain.Service.Contracts.SendBlockReply>(
             grpc::MethodType.Unary,
             __ServiceName,
             "SendBlock",
             __Marshaller_SendBlockRequest,
             __Marshaller_SendBlockReply);
 
-        static readonly grpc::Method<global::ResolveChainRequest, global::ResolveChainReply> __Method_ResolveChain = new grpc::Method<global::ResolveChainRequest, global::ResolveChainReply>(
+        static readonly grpc::Method<global::TorrentChain.Service.Contracts.ResolveChainRequest, global::TorrentChain.Service.Contracts.ResolveChainReply> __Method_ResolveChain = new grpc::Method<global::TorrentChain.Service.Contracts.ResolveChainRequest, global::TorrentChain.Service.Contracts.ResolveChainReply>(
             grpc::MethodType.Unary,
             __ServiceName,
             "ResolveChain",
@@ -35,18 +35,18 @@ namespace TorrentChain.Service
         /// <summary>Service descriptor</summary>
         public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
         {
-            get { return global::BlockSyncServiceReflection.Descriptor.Services[0]; }
+            get { return global::TorrentChain.Service.Contracts.BlockSyncServiceReflection.Descriptor.Services[0]; }
         }
 
         /// <summary>Base class for server-side implementations of BlockSync</summary>
         public abstract partial class BlockSyncBase
         {
-            public virtual global::System.Threading.Tasks.Task<global::SendBlockReply> SendBlock(global::SendBlockRequest request, grpc::ServerCallContext context)
+            public virtual global::System.Threading.Tasks.Task<global::TorrentChain.Service.Contracts.SendBlockReply> SendBlock(global::TorrentChain.Service.Contracts.SendBlockRequest request, grpc::ServerCallContext context)
             {
                 throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
             }
 
-            public virtual global::System.Threading.Tasks.Task<global::ResolveChainReply> ResolveChain(global::ResolveChainRequest request, grpc::ServerCallContext context)
+            public virtual global::System.Threading.Tasks.Task<global::TorrentChain.Service.Contracts.ResolveChainReply> ResolveChain(global::TorrentChain.Service.Contracts.ResolveChainRequest request, grpc::ServerCallContext context)
             {
                 throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
             }
@@ -76,35 +76,35 @@ namespace TorrentChain.Service
             {
             }
 
-            public virtual global::SendBlockReply SendBlock(global::SendBlockRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+            public virtual global::TorrentChain.Service.Contracts.SendBlockReply SendBlock(global::TorrentChain.Service.Contracts.SendBlockRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
             {
                 return SendBlock(request, new grpc::CallOptions(headers, deadline, cancellationToken));
             }
-            public virtual global::SendBlockReply SendBlock(global::SendBlockRequest request, grpc::CallOptions options)
+            public virtual global::TorrentChain.Service.Contracts.SendBlockReply SendBlock(global::TorrentChain.Service.Contracts.SendBlockRequest request, grpc::CallOptions options)
             {
                 return CallInvoker.BlockingUnaryCall(__Method_SendBlock, null, options, request);
             }
-            public virtual grpc::AsyncUnaryCall<global::SendBlockReply> SendBlockAsync(global::SendBlockRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+            public virtual grpc::AsyncUnaryCall<global::TorrentChain.Service.Contracts.SendBlockReply> SendBlockAsync(global::TorrentChain.Service.Contracts.SendBlockRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
             {
                 return SendBlockAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
             }
-            public virtual grpc::AsyncUnaryCall<global::SendBlockReply> SendBlockAsync(global::SendBlockRequest request, grpc::CallOptions options)
+            public virtual grpc::AsyncUnaryCall<global::TorrentChain.Service.Contracts.SendBlockReply> SendBlockAsync(global::TorrentChain.Service.Contracts.SendBlockRequest request, grpc::CallOptions options)
             {
                 return CallInvoker.AsyncUnaryCall(__Method_SendBlock, null, options, request);
             }
-            public virtual global::ResolveChainReply ResolveChain(global::ResolveChainRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+            public virtual global::TorrentChain.Service.Contracts.ResolveChainReply ResolveChain(global::TorrentChain.Service.Contracts.ResolveChainRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
             {
                 return ResolveChain(request, new grpc::CallOptions(headers, deadline, cancellationToken));
             }
-            public virtual global::ResolveChainReply ResolveChain(global::ResolveChainRequest request, grpc::CallOptions options)
+            public virtual global::TorrentChain.Service.Contracts.ResolveChainReply ResolveChain(global::TorrentChain.Service.Contracts.ResolveChainRequest request, grpc::CallOptions options)
             {
                 return CallInvoker.BlockingUnaryCall(__Method_ResolveChain, null, options, request);
             }
-            public virtual grpc::AsyncUnaryCall<global::ResolveChainReply> ResolveChainAsync(global::ResolveChainRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+            public virtual grpc::AsyncUnaryCall<global::TorrentChain.Service.Contracts.ResolveChainReply> ResolveChainAsync(global::TorrentChain.Service.Contracts.ResolveChainRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
             {
                 return ResolveChainAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
             }
-            public virtual grpc::AsyncUnaryCall<global::ResolveChainReply> ResolveChainAsync(global::ResolveChainRequest request, grpc::CallOptions options)
+            public virtual grpc::AsyncUnaryCall<global::TorrentChain.Service.Contracts.ResolveChainReply> ResolveChainAsync(global::TorrentChain.Service.Contracts.ResolveChainRequest request, grpc::CallOptions options)
             {
                 return CallInvoker.AsyncUnaryCall(__Method_ResolveChain, null, options, request);
             }

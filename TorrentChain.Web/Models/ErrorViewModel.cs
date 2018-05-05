@@ -1,6 +1,4 @@
-using System;
-
-namespace TorrentChain.Models
+namespace TorrentChain.Web.Models
 {
     public class ErrorViewModel
     {

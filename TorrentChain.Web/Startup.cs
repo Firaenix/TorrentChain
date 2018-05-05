@@ -10,6 +10,9 @@ using TorrentChain.Web.Mapper;
 using TorrentChain.Service;
 using TorrentChain.Service.Interfaces;
 using Microsoft.EntityFrameworkCore.Internal;
+using TorrentChain.Data.Models;
+using TorrentChain.Service.Mapper;
+using MappingRegistry = TorrentChain.Web.Mapper.MappingRegistry;
 
 namespace TorrentChain.Web
 {
@@ -27,14 +30,19 @@ namespace TorrentChain.Web
         {
             services.AddMvc();
 
-            services.AddSingleton<IMapperService, AutoMapperMapper>();
+            services.AddSingleton<IMapperService, ServiceMapper>();
             MappingRegistry.RegisterMappings();
 
-            //services.AddSingleton<BlockChain>();
-            services.AddSingleton<IChainService, ChainService>();
+            services.AddSingleton<IBlockChain, BlockChain>();
+            services.AddTransient<IChainService, ChainService>();
+
+
+            services.AddSingleton<BlockSyncServiceImpl>();
+            services.AddSingleton<BlockSyncServiceClient>();
+            services.AddSingleton<IBroadcastClient, BlockSyncServiceClient>();
 
             // services.AddTransient<IChainResolutionService, S3ChainResolutionService>();
-            services.AddSingleton<IChainResolutionService, PeerChainResolutionService>();
+            services.AddTransient<IChainResolutionService, PeerChainResolutionService>();
 
             services.AddLogging();
         }

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using TorrentChain.Data.Models;
 using TorrentChain.Web.Mapper;
 using TorrentChain.Web.Models;
-using TorrentChain.Service;
+using TorrentChain.Service.Mapper;
+using TorrentChain.Service.Interfaces;
 
 namespace TorrentChain.Web.Controllers.Api
 {
