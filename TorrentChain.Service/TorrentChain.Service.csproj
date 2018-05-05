@@ -3,6 +3,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ChainResolveServiceImpl.cs" />
+    <Compile Remove="Interfaces\IChainResolutionService.cs" />
+    <Compile Remove="PeerChainResolutionService.cs" />
+    <Compile Remove="S3ChainResolutionService.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Expressmapper" Version="1.9.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Grpc.Tools" Version="1.11.0" />

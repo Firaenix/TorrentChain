@@ -6,45 +6,50 @@ using Grpc.Core;
 using Grpc.Core.Logging;
 using Microsoft.Extensions.Logging;
 using TorrentChain.Data.Models;
-using TorrentChain.Service.Contracts;
 using TorrentChain.Service.Interfaces;
+using TorrentChain.Service.Mapper;
 
 namespace TorrentChain.Service
 {
     public class BlockSyncServiceImpl : BlockSync.BlockSyncBase
     {
         private readonly IBlockChain _blockChain;
+        private readonly IMapperService _mapper;
 
-        public BlockSyncServiceImpl(IBlockChain blockChain)
+        public BlockSyncServiceImpl(IBlockChain blockChain, IMapperService mapper)
         {
             _blockChain = blockChain;
+            _mapper = mapper;
         }
 
         public override async Task<SendBlockReply> SendBlock(SendBlockRequest request, ServerCallContext context)
         {
+            var protoblock = request.Block;
+            var block = _mapper.Map<ProtoBlock, Block>(protoblock);
+
+            var prevBlock = _blockChain.GetChain().First(x => x.Hash.Equals(block.PreviousHash));
+            if (_blockChain.IsValidNewBlock(prevBlock, block))
+            {
+                _blockChain.AddBlock(block.BlockData);
+
+                return new SendBlockReply
+                {
+                    Success = true
+                };
+            }
+
             return new SendBlockReply
             {
-                Success = true
+                Success = false
             };
         }
 
-        public override async Task<ResolveChainReply> ResolveChain(ResolveChainRequest request, ServerCallContext context)
-        {
-            return new ResolveChainReply()
-            {
-                Blockchain = { new ProtoBlock()
-                {
-
-                }}
-            };
-        }
+        
     }
 
     public interface IBroadcastClient
     {
         Task BroadcastNewBlock(Block block);
-
-        Task<ResolveChainReply> ResolveChain();
     }
 
     public class BlockSyncServiceClient : IBroadcastClient
@@ -70,11 +75,6 @@ namespace TorrentChain.Service
             _channel = new Channel("127.0.0.1:7777", ChannelCredentials.Insecure);
             // var thing = BlockSync.BindService(new BlockSyncServiceImpl());
             _client = new BlockSync.BlockSyncClient(_channel);
-        }
-
-        public async Task<ResolveChainReply> ResolveChain()
-        {
-            return await _client.ResolveChainAsync(new ResolveChainRequest());
         }
 
         public async Task BroadcastNewBlock(Block block)

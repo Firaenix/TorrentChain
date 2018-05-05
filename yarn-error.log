@@ -30,7 +30,7 @@ npm manifest:
           "run-grpc":
               "./Grpc.Tools.1.11.0/tools/linux_x64/protoc -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/BlockSyncService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/linux_x64/grpc_csharp_plugin",
           "run-grpc-win":
-              "./Grpc.Tools.1.11.0/tools/windows_x64/protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/BlockSyncService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe"
+              "./Grpc.Tools.1.11.0/tools/windows_x64/protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/*.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe"
       },
       "dependencies": {
           "axios": "^0.18.0",
@@ -6869,7 +6869,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c .\Grpc.Tools.1.11.0\tools\windows_x64\protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/BlockSyncService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe
+  Arguments: /d /s /c .\Grpc.Tools.1.11.0\tools\windows_x64\protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/*.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe
   Directory: F:\Development\TorrentChain\TorrentChain
   Output:
   

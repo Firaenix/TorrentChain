@@ -1,5 +1,4 @@
 ﻿using TorrentChain.Data.Models;
-using TorrentChain.Service.Contracts;
 using EMapper = ExpressMapper.Mapper;
 
 namespace TorrentChain.Service.Mapper

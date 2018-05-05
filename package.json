@@ -13,8 +13,10 @@
             "chmod +x ./Grpc.Tools.1.11.0/tools/linux_x64/protoc && chmod +x ./Grpc.Tools.1.11.0/tools/linux_x64/grpc_csharp_plugin",
         "run-grpc":
             "./Grpc.Tools.1.11.0/tools/linux_x64/protoc -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/BlockSyncService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/linux_x64/grpc_csharp_plugin",
-        "run-grpc-win":
-            "./Grpc.Tools.1.11.0/tools/windows_x64/protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/BlockSyncService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe"
+        "run-grpc-win--blocksync":
+            "./Grpc.Tools.1.11.0/tools/windows_x64/protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/BlockSyncService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe",
+        "run-grpc-win--chainresolve":
+            "./Grpc.Tools.1.11.0/tools/windows_x64/protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/ChainResolveService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe"
     },
     "dependencies": {
         "axios": "^0.18.0",

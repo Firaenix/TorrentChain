@@ -23,9 +23,9 @@ namespace TorrentChain.Data.Models
     {
         private LinkedList<Block> _chain;
 
-        public BlockChain()
+        public BlockChain(LinkedList<Block> chain)
         {
-            _chain = new LinkedList<Block>();
+            _chain = chain;
 
             #if DEBUG
             AddGenesisBlock();
