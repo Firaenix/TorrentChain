@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js run-grpc-win
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js run-grpc-win--protomodels
 
 PATH: 
   C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\Program Files\Docker\Docker\Resources\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\sbt\\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Python27;C:\Program Files\FileBot\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\Skype\Phone\;D:\Program Files\Amazon\AWSCLI\;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\Nick\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;D:\Program Files\Calibre2\;C:\Users\Nick\AppData\Local\Microsoft\WindowsApps;D:\Program Files (x86)\Microsoft VS Code\bin;D:\Users\Nick\AppData\Local\Android\sdk\platform-tools;D:\Users\Nick\AppData\Local\Android\sdk\tools;F:\Development\TeleChatRelay\node_modules\chromedriver\lib\chromedriver\;C:\Users\Nick\AppData\Roaming\nvm;C:\Users\Nick\AppData\Roaming\npm;C:\Users\Nick\AppData\Local\Yarn\bin;C:\Users\Nick\AppData\Local\Programs\Python\Python36-32;C:\Users\Nick\AppData\Local\hyper\app-2.0.0\resources\bin;C:\Python27\Scripts
@@ -29,8 +29,12 @@ npm manifest:
               "chmod +x ./Grpc.Tools.1.11.0/tools/linux_x64/protoc && chmod +x ./Grpc.Tools.1.11.0/tools/linux_x64/grpc_csharp_plugin",
           "run-grpc":
               "./Grpc.Tools.1.11.0/tools/linux_x64/protoc -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/BlockSyncService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/linux_x64/grpc_csharp_plugin",
-          "run-grpc-win":
-              "./Grpc.Tools.1.11.0/tools/windows_x64/protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/*.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe"
+          "run-grpc-win--blocksync":
+              "./Grpc.Tools.1.11.0/tools/windows_x64/protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/BlockSyncService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe",
+          "run-grpc-win--chainresolve":
+              "./Grpc.Tools.1.11.0/tools/windows_x64/protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/ChainResolveService.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe",
+          "run-grpc-win--protomodels":
+              "./Grpc.Tools.1.11.0/tools/windows_x64/protoc.exe -I ./TorrentChain.Service/Contracts/Models --csharp_out ./TorrentChain.Service/Contracts/Models --grpc_out ./TorrentChain.Service/Contracts/Models ./TorrentChain.Service/Contracts/ProtoModels.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe"
       },
       "dependencies": {
           "axios": "^0.18.0",
@@ -6869,7 +6873,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c .\Grpc.Tools.1.11.0\tools\windows_x64\protoc.exe -I ./TorrentChain.Service/Contracts --csharp_out ./TorrentChain.Service/Contracts --grpc_out ./TorrentChain.Service/Contracts ./TorrentChain.Service/Contracts/*.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe
+  Arguments: /d /s /c .\Grpc.Tools.1.11.0\tools\windows_x64\protoc.exe -I ./TorrentChain.Service/Contracts/Models --csharp_out ./TorrentChain.Service/Contracts/Models --grpc_out ./TorrentChain.Service/Contracts/Models ./TorrentChain.Service/Contracts/ProtoModels.proto --plugin=protoc-gen-grpc=./Grpc.Tools.1.11.0/tools/windows_x64/grpc_csharp_plugin.exe
   Directory: F:\Development\TorrentChain\TorrentChain
   Output:
   

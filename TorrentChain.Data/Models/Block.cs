@@ -6,7 +6,7 @@ namespace TorrentChain.Data.Models
     public class Block
     {
         // Private for deserialising
-        private Block()
+        public Block()
         {
         }
 

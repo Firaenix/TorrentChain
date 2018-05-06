@@ -9,6 +9,9 @@
     <Compile Remove="S3ChainResolutionService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Contracts\ChainResolveService.proto" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Expressmapper" Version="1.9.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Grpc.Tools" Version="1.11.0" />
@@ -20,6 +23,9 @@
     <ProjectReference Include="..\TorrentChain.Data\TorrentChain.Data.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.configuration.abstractions\2.0.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Logging.Abstractions">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.0.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>

@@ -1,0 +1,13 @@
+syntax = "proto3";
+import public "ProtoModels.proto";
+
+service ChainResolve {
+	rpc GetBlockchain (GetBlockChainRequest) returns (GetBlockChainReply) {}
+}
+
+message GetBlockChainRequest {
+}
+
+message GetBlockChainReply {
+    repeated ProtoBlock Blockchain = 1;
+}

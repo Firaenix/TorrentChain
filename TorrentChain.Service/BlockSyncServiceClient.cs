@@ -67,12 +67,12 @@ namespace TorrentChain.Service
             _server = new Server
             {
                 Services = { BlockSync.BindService(blockSyncService) },
-                Ports = { new ServerPort("localhost", 7777, ServerCredentials.Insecure) }
+                Ports = { new ServerPort("localhost", 7357, ServerCredentials.Insecure) }
             };
             _server.Start();
 
 
-            _channel = new Channel("127.0.0.1:7777", ChannelCredentials.Insecure);
+            _channel = new Channel("127.0.0.1:7357", ChannelCredentials.Insecure);
             // var thing = BlockSync.BindService(new BlockSyncServiceImpl());
             _client = new BlockSync.BlockSyncClient(_channel);
         }

@@ -112,7 +112,7 @@ namespace TorrentChain.Data.Models
 
         private void AddGenesisBlock()
         {
-            if (_chain.Count > 0) return;
+            if (_chain == null || _chain.Count > 0) return;
 
             var genesisData = new BlockData(Encoding.ASCII.GetBytes("This is the genesis block!!"));
             var sha512 = SHA512.Create();

@@ -10,11 +10,14 @@ namespace TorrentChain.Web.Mapper
     {
         public override void Configure()
         {
-            EMapper.Register<Block, BlockViewModel>()
-                   .Member(dest => dest.Block, src => src)
-                   .Member(dest => dest.TorrentInfo, src => BlockUtils.GetTorrentInformation(src))
-                   .Member(dest => dest.MagnetLink, 
-                           src => BlockUtils.GetTorrentInformation(src).GetMagnetLink(BencodeNET.Torrents.MagnetLinkOptions.IncludeTrackers));
+            EMapper.RegisterCustom<Block, BlockViewModel>((block) => new BlockViewModel()
+            {
+                Block = block,
+                TorrentInfo = BlockUtils.GetTorrentInformation(block),
+                MagnetLink = BlockUtils.GetTorrentInformation(block).GetMagnetLink()
+            });
+
+            EMapper.Compile();
         }
     }
 }

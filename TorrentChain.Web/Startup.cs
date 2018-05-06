@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -22,7 +23,11 @@ namespace TorrentChain.Web
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -30,33 +35,30 @@ namespace TorrentChain.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             services.AddMvc();
 
             services.AddSingleton<IMapperService, ServiceMapper>();
             MappingRegistry.RegisterMappings();
 
+            StupidMansBlockchainBootstrapper(services);
+
             services.AddSingleton<BlockSyncServiceImpl>();
-
-            GetAndRegisterBlockChain(services);
-
-            services.AddTransient<IChainService, ChainService>();
             services.AddSingleton<IBroadcastClient, BlockSyncServiceClient>();
-
+            services.AddTransient<IChainService, ChainService>();
+            
             services.AddLogging();
         }
 
-        private void GetAndRegisterBlockChain(IServiceCollection services)
+        private void StupidMansBlockchainBootstrapper(IServiceCollection services)
         {
-            using (var client = new HttpClient())
-            {
-                var res = client.GetAsync("http://localhost:5001/api/blockchain/");
-                res.Wait();
-                var chainStringTask = res.Result.Content.ReadAsStringAsync();
-                chainStringTask.Wait();
-                var chainList = JsonConvert.DeserializeObject<LinkedList<Block>>(chainStringTask.Result);
+            var crapChain = new BlockChain(null);
 
-                services.AddSingleton<IBlockChain>(new BlockChain(chainList));
-            }
+            var serviceClient = new ChainResolveServiceClient(Configuration, new ChainResolveImpl(crapChain), new ServiceMapper());
+            var chain = serviceClient.ResolveChainFromPeers();
+
+            services.AddSingleton<IBlockChain>(chain);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
