@@ -15,10 +15,12 @@ namespace TorrentChain.Service
     public class ChainResolveImpl : ChainResolve.ChainResolveBase
     {
         private readonly IBlockChain _blockchain;
+        private readonly IMapperService _mapper;
 
-        public ChainResolveImpl(IBlockChain blockChain)
+        public ChainResolveImpl(IBlockChain blockChain, IMapperService mapper)
         {
             _blockchain = blockChain;
+            _mapper = mapper;
         }
 
         public async override Task<GetBlockChainReply> GetBlockchain(GetBlockChainRequest request,
@@ -26,7 +28,9 @@ namespace TorrentChain.Service
         {
             return new GetBlockChainReply()
             {
-                Blockchain = {new List<ProtoBlock>()}
+                Blockchain = {
+                    _mapper.Map<IReadOnlyList<Block>, ProtoBlock[]>(_blockchain.GetChain())
+                }
             };
         }
     }
@@ -63,6 +67,11 @@ namespace TorrentChain.Service
 
             var chain = _mapperService.Map<List<ProtoBlock>, LinkedList<Block>>(res.Blockchain.ToList());
             return new BlockChain(chain);
+        }
+
+        public void DestroyConnection()
+        {
+            _server.ShutdownAsync().Wait();
         }
     }
 }

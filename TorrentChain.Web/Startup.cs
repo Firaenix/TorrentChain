@@ -54,11 +54,14 @@ namespace TorrentChain.Web
         private void StupidMansBlockchainBootstrapper(IServiceCollection services)
         {
             var crapChain = new BlockChain(null);
-
-            var serviceClient = new ChainResolveServiceClient(Configuration, new ChainResolveImpl(crapChain), new ServiceMapper());
+            var mapper = new ServiceMapper();
+            var serviceClient = new ChainResolveServiceClient(Configuration, new ChainResolveImpl(crapChain, mapper), mapper);
             var chain = serviceClient.ResolveChainFromPeers();
+            serviceClient.DestroyConnection();
 
             services.AddSingleton<IBlockChain>(chain);
+            services.AddSingleton<ChainResolveImpl>();
+            services.AddSingleton<ChainResolveServiceClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
