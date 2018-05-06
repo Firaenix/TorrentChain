@@ -53,9 +53,9 @@ namespace TorrentChain.Web
 
         private void StupidMansBlockchainBootstrapper(IServiceCollection services)
         {
-            var crapChain = new BlockChain(null);
+            // I had to do this to create a chain when we dont have one yet - its pretty gross...
             var mapper = new ServiceMapper();
-            var serviceClient = new ChainResolveServiceClient(Configuration, new ChainResolveImpl(crapChain, mapper), mapper);
+            var serviceClient = new ChainResolveServiceClient(Configuration, new ChainResolveImpl(new BlockChain(null), mapper), mapper);
             var chain = serviceClient.ResolveChainFromPeers();
             serviceClient.DestroyConnection();
 
